@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  merge_group:
   push:
     branches:
       - master
@@ -168,24 +169,12 @@ jobs:
     needs: formatting
     uses: ./.github/workflows/build-native.yml
 
-  success:
-    name: Success
+  gate:
+    name: gate
+    if: always()
+    needs: [formatting, lints, tests, miri, wasm, build-native]
     runs-on: ubuntu-latest
-    if: ${{ always() }}
-    needs:
-      - formatting
-      - lints
-      - tests
-      - miri
-      - wasm
-      - build-native
-
     steps:
-      - name: CI succeeded
-        id: succeeded
-        if: ${{ !contains(needs.*.result, 'failure') }}
-        run: exit 0
-
-      - name: CI failed
-        if: ${{ steps.succeeded.outcome == 'skipped' }}
-        run: exit 1
+      - uses: krabka-io/tooling/actions/gate@a42cceef18200f4f282ae5a090856f63125a12ff
+        with:
+          results: ${{ toJSON(needs) }}

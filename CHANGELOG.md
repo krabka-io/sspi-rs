@@ -1,3 +1,8 @@
+# Organization update - 2026-11-11
+
+- Adopt the shared krabka-io CI gate and validate merge queue groups.
+- Prepare `sspi` 0.21.1.
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
