@@ -39,11 +39,11 @@ jobs:
           - os: win
             runner: windows-2022
           - os: osx
-            runner: macos-14
+            runner: macos-15-intel
           - os: linux
             runner: ubuntu-22.04
           - os: ios
-            runner: macos-14
+            runner: macos-15-intel
           - os: android
             runner: ubuntu-22.04
         exclude:

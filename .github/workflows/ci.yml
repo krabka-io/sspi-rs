@@ -39,7 +39,7 @@ jobs:
             runner: windows-2022
             additional-args: --features tsssp
           - os: osx
-            runner: macos-14
+            runner: macos-15-intel
           - os: linux
             runner: ubuntu-latest
 
@@ -78,7 +78,7 @@ jobs:
           - os: win
             runner: windows-2022
           - os: osx
-            runner: macos-14
+            runner: macos-15-intel
           - os: linux
             runner: ubuntu-latest
 
