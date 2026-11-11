@@ -162,8 +162,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Prepare runner
-        run: sudo apt-get install wabt
+      - name: Install WABT 1.0.36
+        run: |
+          curl -fLsS --retry 3 --connect-timeout 10 \
+            https://github.com/WebAssembly/wabt/releases/download/1.0.36/wabt-1.0.36-ubuntu-20.04.tar.gz \
+            -o "${RUNNER_TEMP}/wabt.tar.gz"
+          echo "4aa0929db06c2376cc76f6d9e920dbde2ea6f1fd55bbaed6cd65167e9e39ecd3  ${RUNNER_TEMP}/wabt.tar.gz" | sha256sum --check --strict
+          tar -xzf "${RUNNER_TEMP}/wabt.tar.gz" -C "${RUNNER_TEMP}"
+          echo "${RUNNER_TEMP}/wabt-1.0.36/bin" >> "${GITHUB_PATH}"
+          "${RUNNER_TEMP}/wabt-1.0.36/bin/wasm2wat" --version
 
       - name: Check
         shell: pwsh
