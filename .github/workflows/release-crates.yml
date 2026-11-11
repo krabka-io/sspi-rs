@@ -14,6 +14,7 @@ jobs:
   # Create a PR with the new versions and changelog, preparing the next release.
   open-pr:
     name: Open release PR
+    if: github.repository == 'Devolutions/sspi-rs'
     environment: cratesio-publish
     runs-on: ubuntu-latest
     concurrency:
@@ -38,6 +39,7 @@ jobs:
   # Release unpublished packages.
   release:
     name: Release crates
+    if: github.repository == 'Devolutions/sspi-rs'
     environment: cratesio-publish
     runs-on: ubuntu-latest
     permissions:
