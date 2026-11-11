@@ -1,7 +1,7 @@
 # Organization update - 2026-11-11
 
 - Adopt the shared krabka-io CI gate and validate merge queue groups.
-- Prepare `sspi` 0.21.1.
+- Prepare `sspi` 0.21.1, `winscard` 0.3.3 and `kdc` 0.1.1.
 
 # Changelog
 

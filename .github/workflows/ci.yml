@@ -9,6 +9,10 @@ on:
     types: [ opened, synchronize, reopened ]
   workflow_dispatch:
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
 jobs:
   formatting:
     name: Check formatting
@@ -60,6 +64,7 @@ jobs:
       SSPI_RS_IS_RUNNING_TESTS: true
     strategy:
       fail-fast: true
+      max-parallel: 4
       matrix:
         os: [ win, osx, linux ]
         manifest:
@@ -175,6 +180,6 @@ jobs:
     needs: [formatting, lints, tests, miri, wasm, build-native]
     runs-on: ubuntu-latest
     steps:
-      - uses: krabka-io/tooling/actions/gate@a42cceef18200f4f282ae5a090856f63125a12ff
+      - uses: krabka-io/tooling/actions/gate@1fb9d942c2def2fcfa20c19ed8ae8a7d8f220f65
         with:
           results: ${{ toJSON(needs) }}

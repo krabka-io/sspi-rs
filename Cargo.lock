@@ -1744,7 +1744,7 @@ dependencies = [
 
 [[package]]
 name = "kdc"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "argon2",
  "picky-asn1",
@@ -4344,7 +4344,7 @@ dependencies = [
 
 [[package]]
 name = "winscard"
-version = "0.3.2"
+version = "0.3.3"
 dependencies = [
  "base64",
  "bitflags 2.11.1",
